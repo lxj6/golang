@@ -29,8 +29,14 @@ func test6() {
 	}
 }
 
+func test7() {
+	var a1 = [3]int{2, 3, 4}
+	fmt.Println(len(a1))
+}
+
 func main() {
 	//test4()
 	//test5()
 	test6()
+	test7()
 }
