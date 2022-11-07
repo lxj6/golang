@@ -52,6 +52,15 @@ func subs(a int, b int) int {
 	return a - b
 }
 
+//defer类似于队列里先进后出，先定义的最后执行，一般用于释放数据库链接或锁
+func test5() {
+	fmt.Println("step1")
+	defer fmt.Println("step2")
+	defer fmt.Println("step3")
+	defer fmt.Println("step4")
+	fmt.Println("end...")
+}
+
 func main() {
 	//s1 := sum(1, 3)
 	//fmt.Println(s1)
@@ -71,5 +80,17 @@ func main() {
 	fmt.Println(s)
 	f = subs
 	s = f(5, 1)
-	fmt.Println(s)*/
+	fmt.Println(s)
+	test5()*/
+	//类型定义
+	/*type MyInt int
+	var i MyInt
+	i = 100
+	fmt.Printf("T:%T v:%v\n", i, i)*/
+	//T:main.MyInt v:100
+	//类型别名
+	type MyInt = int
+	var i MyInt
+	i = 100
+	fmt.Printf("T:%T v:%v\n", i, i)
 }
