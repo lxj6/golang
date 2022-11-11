@@ -43,4 +43,30 @@ func main() {
 		email: "tomss@email.com",
 	}
 	fmt.Println(tom)
+	type pig struct {
+		color string
+		age   int
+	}
+
+	//结构体嵌套
+	type per struct {
+		name string
+		age  int
+		d    pig
+	}
+	//结构体嵌套赋值的两种方式，第一中直接声明并赋值
+	pi := pig{"red", 1}
+	m := per{
+		name: "james",
+		age:  10,
+		d:    pi,
+	}
+	fmt.Println(m)
+	//第二种直接指定属性赋值
+	t := per{}
+	t.name = "t"
+	t.age = 3
+	t.d.color = "black"
+	t.d.age = 1
+	fmt.Println(t)
 }

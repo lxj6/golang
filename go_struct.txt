@@ -16,3 +16,30 @@ member definition 成员定义
 
 golang结构体初始化
 未初始化的结构体，成员都是零值， int 0、 float 0.0、 bool false、 string nil、 nil
+
+golang方法
+go语言没有面向对象的特性，也没有类对象的概念。但是，可以使用结构体来模拟这些特性，我们都知道面向对象里面类有方法等概念，我们也可以声明一些方法，属于某个结构体。
+go语言方法的语法
+go中的方法，是一种特殊的函数，定义于struct之上(与struct关联、绑定)，被称为struct的接受者(receiver)。通俗的讲，方法就是有接受者的函数。
+语法解析格式如下：
+type mytype struct{}
+
+func (recv mytype) my_method(para) return_type {}
+func (recv *mytype) my_method(para) return_type {}
+mytype:定义一个结构体
+recv:接受该方法的结构体
+my_method:方法名称
+para:参数列表
+return_type:返回值类型
+从语法格式可以看出，一个方法和一个函数非常相似，多了一个接收类型
+
+go语言方法注意事项
+1.方法的receiver type并非一定要是struct类型，type定义的类型别名，slice、map、channel、func类型等都可以
+2.struct结合他的方法就等价于面向对象中的类，只不过struct可以和他的方法分开，并非一定要属于同一个文件，但必须属于同一个包
+3.方法参数的两种接收类型：(T type)和(T *type)，它们之间有区别
+4.方法就是函数，所以go中没有方法重载(overload)的说法，也就是说同一类型中的所有方法名必须都唯一。
+5.如果receiver是一个指针类型，则会自动解除引用
+6.方法和type是分开的，意味着示例的行为(behavior)和数据存储(field)是分开的，但是它们通过receiver建立起关联关系。
+
+golang方法接受者类型
+结构体实例，有值类型和指针类型，那么方法的接收者是结构体，那么也有值类型和指针类型。区别就是接受者是否复制结构体副本。值类型复制，指针类型不复制。
