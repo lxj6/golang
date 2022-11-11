@@ -1,0 +1,36 @@
+golang包
+包可以区分命令空间(一个文件夹中不能有两个同名文件)，也可以更好地管理项目。go中创建一个包，一般是创建一个文件夹，在该文件夹里面的go文件中，使用package关键字声明包名称。通常，文件夹名称和包名称相同，并且，同一个文件下面只有一个包
+
+包注意事项
+一个文件夹下只能有一个package
+import后面其实是gopath开始的相对目录路径，包括最后一段，但由于一个目录下只能有一个package，所以import一个路径就等于import了这个路径下的包
+注意：这里指的是"直接包含"的go文件，如果有子目录，那么子目录的父目录是完全两个包
+比如你实现了一个计算器package,名叫calc，位于calc目录下，但是又想给别人一个使用范例，于是在calc下可以创建一个example目录(calc/example)，这个子目录里有个example.go(calc/example/example.go)。此时，example.go可以是main包，里面还可以有个main函数。
+一个package的文件不能在多个文件夹下
+如果多个文件夹下有重名的package，他们其实是彼此无关的package
+如果一个go文件需要同时使用不同目录下的同名package，需要在import这些目录是为目录指定一个package别名。
+
+go module简介
+go module是golang 1.11新加特性，后来管理模块中包的依赖关系。
+
+go mod使用方法
+
+初始化模块
+go mod init <项目模块名称>
+
+依赖关系处理，根据go.mod文件
+go mod tidy
+
+将依赖包复制到项目下的vendor目录
+go mod vendor
+如果包被屏蔽(墙)，可以使用这个命令，随后使用go build -mod=vendor编译
+
+显示依赖关系
+go list -m all
+
+显示详细依赖关系
+go list -m -json all
+
+下载依赖
+go mod download [path@version]
+[path@version]是非必写的
