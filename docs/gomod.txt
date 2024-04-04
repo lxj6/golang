@@ -18,12 +18,32 @@ go mod使用方法
 初始化模块
 go mod init <项目模块名称>
 
-依赖关系处理，根据go.mod文件
+将模块下载到本地缓存，需要指定模块路径及版本号，只会下载模块，不会下载依赖
+go mod download
+
+依赖关系处理，根据go.mod文件，添加缺少的以来，删除未使用的依赖
 go mod tidy
 
 将依赖包复制到项目下的vendor目录
 go mod vendor
 如果包被屏蔽(墙)，可以使用这个命令，随后使用go build -mod=vendor编译
+
+验证依赖是否正确
+go mod verify
+
+查看为什么引用这个包，会展示当前引用关系
+go mod why
+
+安装可执行插件
+go install
+
+获取模块并把模块引用的包全部获取下来，并更新go.mod文件
+若本地缓存没有该模块，则下载模块，若有直接引用
+go get
+go get -u 更新模块依赖，升级依赖包
+
+清理临时目录缓存的文件
+go clean
 
 显示依赖关系
 go list -m all
